@@ -62,3 +62,18 @@ pokedex_button.addEventListener("click", () => {
     loadPokemonItens(offset, limit);
   }
 });
+
+/*
+pegar o card
+quando o card for clicado chamar a função de mostrar detalhes
+nessa função precisa receber qual é a url do pokemon
+posso criar uma classe com o sdetalhes dos pokemons
+mostrar um único card responsivo os detalhes do pokemon
+ter um x, uma seta ou clicar fora do card para sair
+
+1º criar o card com css
+2º deixar responsivo
+3º pegar o elemento do card com js
+4º criar a função que pega os dados da api
+
+*/

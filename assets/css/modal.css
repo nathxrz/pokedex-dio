@@ -1,0 +1,77 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.modal__content {
+  background-image: url(../images/straws.png);
+  width: 20rem;
+
+  margin-top: -150px;
+
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal__info {
+  color: #fff;
+  font-size: 16px;
+  margin: 1rem 1rem 0.5rem;
+
+  position: relative;
+}
+
+.modal__info div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+
+.material-symbols-outlined {
+  color: #fff;
+  font-size: 24px;
+}
+
+.modal__name {
+  font-weight: 400;
+}
+
+.modal__number {
+  color: #000;
+  opacity: 0.3;
+}
+
+.modal__img {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+
+  position: absolute;
+  right: 10px;
+  top: 85px;
+}
+
+.modal__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+
+  background-color: rgba(255, 255, 255, 0.904);
+  border-radius: 1rem;
+
+  padding: 1.2rem 1rem;
+}
+
+.modal__section {
+  font-size: 15px;
+}
