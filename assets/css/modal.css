@@ -14,18 +14,18 @@
 
 .modal__content {
   background-image: url(../images/straws.png);
-  width: 20rem;
+  width: 32rem;
 
-  margin-top: -150px;
+  margin-top: -15rem;
 
-  border-radius: 1rem;
+  border-radius: 1.6rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .modal__info {
   color: #fff;
-  font-size: 16px;
-  margin: 1rem 1rem 0.5rem;
+  font-size: 1.6rem;
+  margin: 1.6rem 1.6rem 0.8rem;
 
   position: relative;
 }
@@ -34,16 +34,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 70px;
+  margin-bottom: 7rem;
 }
 
-.material-symbols-outlined {
+#modal__button {
   color: #fff;
-  font-size: 24px;
+
+  background-color: transparent;
+  border: none;
+
+  display: flex;
+}
+
+#modal__button:hover {
+  color: #000;
+  opacity: 0.3;
+
+  cursor: pointer;
 }
 
 .modal__name {
   font-weight: 400;
+  text-transform: capitalize;
 }
 
 .modal__number {
@@ -57,21 +69,37 @@
   margin: 0 auto;
 
   position: absolute;
-  right: 10px;
-  top: 85px;
+  right: 1rem;
+  top: 8.5rem;
 }
 
 .modal__detail {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1.4rem;
 
   background-color: rgba(255, 255, 255, 0.904);
-  border-radius: 1rem;
+  border-radius: 1.6rem;
 
-  padding: 1.2rem 1rem;
+  padding: 1.9rem 1.6rem;
 }
 
 .modal__section {
-  font-size: 15px;
+  font-size: 1.5rem;
+}
+
+.modal__types {
+  text-transform: capitalize;
+}
+
+.modal__skills {
+  text-transform: capitalize;
+}
+
+.hidden {
+  display: none;
+}
+
+.overflow {
+  overflow: hidden;
 }

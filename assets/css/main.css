@@ -1,5 +1,6 @@
 @import url(./pokedex_list.css);
 @import url(./modal.css);
+@import url(./colors-pokemons.css);
 
 * {
   font-family: "Roboto", sans-serif;
@@ -8,7 +9,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  font-size: 62.5%;
+}
 
 body {
   background-color: #f6f8fc;
+  font-size: 1.6rem;
 }

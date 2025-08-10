@@ -1,11 +1,16 @@
 const pokedex_list = document.getElementById("pokedex__list");
 const pokedex_button = document.getElementById("pokedex__buttonId");
+const modal = document.getElementById("modal");
 
 const maxRecords = 151;
 const limit = 10;
 let offset = 0;
 
-function editId(number) {
+pokedex_button.addEventListener("click", loadMorePokemons);
+
+pokedex_list.addEventListener("click", loadPokemonClick);
+
+function formatId(number) {
   if (number >= 0 && number < 10) {
     return `00${number}`;
   } else if (number >= 10 && number < 100) {
@@ -20,8 +25,12 @@ function loadPokemonItens(offset, limit) {
     const newListPokemonsHtml = pokemons
       .map(
         (pokemon) =>
-          `<li class="pokedex__pokemon ${pokemon.type}">
-                <span class="pokedex__number">#${editId(pokemon.number)}</span>
+          `<li class="pokedex__pokemon ${pokemon.type}" data-id="${
+            pokemon.number
+          }">
+                <span class="pokedex__number">#${formatId(
+                  pokemon.number
+                )}</span>
                 <span class="pokedex__name">${pokemon.name}</span>
                 <div class="pokedex__detail">
                     <ol class="pokedex__types">
@@ -46,9 +55,7 @@ function loadPokemonItens(offset, limit) {
   });
 }
 
-loadPokemonItens(offset, limit);
-
-pokedex_button.addEventListener("click", () => {
+function loadMorePokemons() {
   offset += limit;
 
   const qtdRecordNextPage = offset + limit;
@@ -61,19 +68,78 @@ pokedex_button.addEventListener("click", () => {
   } else {
     loadPokemonItens(offset, limit);
   }
-});
+}
 
-/*
-pegar o card
-quando o card for clicado chamar a função de mostrar detalhes
-nessa função precisa receber qual é a url do pokemon
-posso criar uma classe com o sdetalhes dos pokemons
-mostrar um único card responsivo os detalhes do pokemon
-ter um x, uma seta ou clicar fora do card para sair
+function loadPokemonClick(e) {
+  const pokemon = e.target.closest(".pokedex__pokemon");
 
-1º criar o card com css
-2º deixar responsivo
-3º pegar o elemento do card com js
-4º criar a função que pega os dados da api
+  if (pokemon) {
+    const id = pokemon.dataset.id;
 
-*/
+    const pokemonData = pokeApi.getPokemon(id);
+
+    modal.innerHTML = showPokemonInfo(pokemonData);
+    modal.classList.remove("hidden");
+
+    const modal_button = document.getElementById("modal__button");
+
+    modal_button.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+  }
+}
+
+function showPokemonInfo(pokemon) {
+  return `<div id="modal" class="modal">
+            <div class="modal__content ${pokemon.type}">
+              <div class="modal__info">
+                <div>
+                  <button id="modal__button" type="button">
+                    <span class="material-symbols-outlined"> arrow_back </span>
+                  </button>
+                  <span class="modal__number">#${formatId(
+                    pokemon.number
+                  )}</span>
+                </div>
+                <img
+                  class="modal__img"
+                  src="${pokemon.photo}"
+                  alt="${pokemon.name}"
+                />
+                <h3 class="modal__name">${pokemon.name}</h3>
+              </div>
+              <div class="modal__detail">
+                <div class="modal__section">
+                  <h4>Type(s):</h4>
+                  <div class="modal__types">
+                    ${pokemon.types
+                      .map((type) => `<span>${type}</span>`)
+                      .join(", ")}.
+                  </div>
+                </div>
+
+                <div class="modal__section">
+                  <h4>Height:</h4>
+                  <p>${pokemon.height} m</p>
+                </div>
+
+                <div class="modal__section">
+                  <h4>Weight:</h4>
+                  <p>${pokemon.weight} kg</p>
+                </div>
+
+                <div class="modal__section">
+                  <h4>Skills:</h4>
+                  <div class="modal__skills">
+                      ${pokemon.skills
+                        .map((skill) => `<span>${skill}</span>`)
+                        .join(", ")}.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  `;
+}
+
+loadPokemonItens(offset, limit);
